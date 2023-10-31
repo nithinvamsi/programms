@@ -1,0 +1,96 @@
+3. HTML
+A. Create a basic calculator using HTML, CSS, and JavaScript with the functionality of add,
+subtract, multiply and divide. Use the following picture for reference.
+HTML CODE:index.html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Basic Calculator</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <div class="calculator">
+        <input type="text" id="display" readonly>
+        <div class="buttons">
+            <button class="number" onclick="addToDisplay('7')">7</button>
+            <button class="number" onclick="addToDisplay('8')">8</button>
+            <button class="number" onclick="addToDisplay('9')">9</button>
+            <button class="operator" onclick="addToDisplay('+')">+</button>
+            <button class="number" onclick="addToDisplay('4')">4</button>
+            <button class="number" onclick="addToDisplay('5')">5</button>
+            <button class="number" onclick="addToDisplay('6')">6</button>
+            <button class="operator" onclick="addToDisplay('-')">-</button>
+            <button class="number" onclick="addToDisplay('1')">1</button>
+            <button class="number" onclick="addToDisplay('2')">2</button>
+            <button class="number" onclick="addToDisplay('3')">3</button>
+            <button class="operator" onclick="addToDisplay('*')">*</button>
+            <button class="number" onclick="addToDisplay('0')">0</button>
+            <button class="operator" onclick="clearDisplay()">C</button>
+            <button class="operator" onclick="calculate()">=</button>
+            <button class="operator" onclick="addToDisplay('/')">/</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+CSS CODE:Styles.css
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+.calculator {
+    width: 300px;
+    margin: 0 auto;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #f0f0f0;
+}
+
+#display {
+    width: 100%;
+    font-size: 24px;
+    text-align: right;
+    margin-bottom: 10px;
+}
+
+button {
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+    margin: 5px;
+}
+
+.number {
+    background-color: #ccc;
+}
+
+.operator {
+    background-color: #ff5733;
+    color: #fff;
+}
+JavaScript(Script.js)
+Code:
+let display = document.getElementById('display');
+let equation = '';
+
+function addToDisplay(value) {
+    equation += value;
+    display.value = equation;
+}
+
+function clearDisplay() {
+    equation = '';
+    display.value = equation;
+}
+
+function calculate() {
+    try {
+        equation = eval(equation).toString();
+        display.value = equation;
+    } catch (error) {
+        display.value = 'Error';
+    }
+}
+

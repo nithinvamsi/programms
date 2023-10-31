@@ -1,0 +1,84 @@
+A. Create an array with the values (1, 2, 3, 4, 5, 6, 7) and shuffle it.
+CODE:
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
+public class ShuffleArray {
+    public static void main(String[] args) {
+        Integer[] array = {1, 2, 3, 4, 5, 6, 7};
+        List<Integer> list = Arrays.asList(array);
+        Collections.shuffle(list);
+        
+        System.out.println("Shuffled array: " + Arrays.toString(list.toArray()));
+    }
+}
+
+B. Enter a Roman Number as input and convert it to an integer. (ex IX = 9)
+CODE:
+import java.util.HashMap;
+import java.util.Map;
+
+public class RomanToInteger {
+    public static void main(String[] args) {
+        String roman = "IX"; // Replace with your input Roman numeral
+        
+        Map<Character, Integer> romanMap = new HashMap<>();
+        romanMap.put('I', 1);
+        romanMap.put('V', 5);
+        romanMap.put('X', 10);
+        romanMap.put('L', 50);
+        romanMap.put('C', 100);
+        romanMap.put('D', 500);
+        romanMap.put('M', 1000);
+
+        int result = 0;
+        int prevValue = 0;
+
+        for (int i = roman.length() - 1; i >= 0; i--) {
+            int currentValue = romanMap.get(roman.charAt(i));
+            if (currentValue < prevValue) {
+                result -= currentValue;
+            } else {
+                result += currentValue;
+            }
+            prevValue = currentValue;
+        }
+
+        System.out.println("Roman to Integer: " + result);
+    }
+}
+
+
+C. Check if the input is pangram or not. (Pangram is a sentence that contains all the alphabet
+from a-z)
+
+
+CODE:
+public class PangramChecker {
+    public static void main(String[] args) {
+        String input = "The quick brown fox jumps over the lazy dog"; // Replace with your input string
+        
+        input = input.toLowerCase(); // Convert to lowercase for case insensitivity
+        boolean[] isAlphabetPresent = new boolean[26];
+        int totalAlphabets = 0;
+
+        for (char c : input.toCharArray()) {
+            if (Character.isLetter(c)) {
+                int index = c - 'a';
+                if (!isAlphabetPresent[index]) {
+                    isAlphabetPresent[index] = true;
+                    totalAlphabets++;
+                }
+            }
+        }
+
+        boolean isPangram = (totalAlphabets == 26);
+
+        if (isPangram) {
+            System.out.println("The input is a pangram.");
+        } else {
+            System.out.println("The input is not a pangram.");
+        }
+    }
+}
